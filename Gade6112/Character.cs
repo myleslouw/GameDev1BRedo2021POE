@@ -48,7 +48,7 @@ namespace Gade6112
         }
         private Gold currentGold;
 
-
+        protected Weapon currentWeapon;
 
 
         public Character(int _yPos, int _xPos, string _symbol) : base (_yPos, _xPos, _symbol)

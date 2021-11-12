@@ -116,7 +116,7 @@ namespace Gade6112
         public override string ToString()
         {
             string heroInfo;
-            heroInfo = "Player Stats: \n HP: " + HP + " / " + MaxHP + "\n Damage: 2 \n [" + X + " , " + Y + "]. Gold = " + GoldCount;
+            heroInfo = "Player Stats: \n HP: " + HP + " / " + MaxHP + "Current Weapon: " +currentWeapon + "\n Weapon Range: " + currentWeapon.Range + "\n Weapon Damage: " + currentWeapon.Damage + "\n [" + X + " , " + Y + "]. Gold = " + GoldCount;
             return heroInfo; ;
         }
     }

@@ -72,7 +72,7 @@ namespace Gade6112
 
 
 
-        public Map(int minHeight, int maxHeight, int minWidth, int maxWidth, int numEnemies, int numDrops)
+        public Map(int minHeight, int maxHeight, int minWidth, int maxWidth, int numEnemies, int numGoldDrops, int WeaponDrops)
         {
             mapHeight = rndm.Next(minHeight, maxHeight);
             mapWidth = rndm.Next(minWidth, maxWidth);
@@ -99,7 +99,7 @@ namespace Gade6112
                 enemies[i] = Create(Tile.TileType.Enemy) as Enemy;   //looops through the amount of enemies and creates them
             }
 
-            ItemArray = new Item[numDrops]; //creates the array of items to the same amount of items that will be spawned
+            ItemArray = new Item[numGoldDrops + WeaponDrops]; //creates the array of items to the same amount of items that will be spawned
 
             for (int i = 0; i < ItemArray.GetLength(0); i++)
             {
@@ -226,16 +226,51 @@ namespace Gade6112
 
         public Enemy EnemyRandomizer(int posWidth, int posHeight)
         {
-            int enemyRandom = rndm.Next(1, 3);  //randoms between goblin and mage
-            if (enemyRandom == 1)
+            int enemyRandom = rndm.Next(1, 4);  //randoms between goblin and mage
+          
+            switch (enemyRandom)
             {
-                return new Goblin(posWidth,posHeight);
-            }
-            else
-            {
-                return new Mage(posWidth, posHeight);
-            }
+                case 1:
+                    return new Goblin(posWidth, posHeight);
+                    break;
 
+                case 2:
+                    return new Mage(posWidth, posHeight);
+
+                case 3:
+                    return new Leader(posWidth, posHeight);
+                    break;
+
+            }
+            return null;
+
+        }
+
+        public Item ItemDropRandomizer()
+        {
+            int randomNum = rndm.Next(0,2);
+
+            if (randomNum == 0)  //the item will be gold if num is 1
+            {
+                return Create(Tile.TileType.Gold) as Gold;
+            }
+            if (randomNum == 1)  //the item will be a weapon if the num is 2 or more
+            {
+                return RandomWeapon(randomNum);
+            }
+            if (randomNum == 2)
+            {
+                return RandomWeapon(randomNum);
+            }
+            return null;
+        }
+
+        public Weapon RandomWeapon(int num)
+        {
+            if (num == 1)
+            {
+                return Create(Tile.TileType.Weapon) as Weapon;
+            }
         }
         public void RandomPosition()
         {
