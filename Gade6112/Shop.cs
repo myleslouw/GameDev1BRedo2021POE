@@ -44,9 +44,9 @@ namespace Gade6112
                 case 3:  //LongBow
 
                     break;
-                default:
-                    break;
+                
             }
+            return null;
         }
 
         public bool CanBuy(int num)

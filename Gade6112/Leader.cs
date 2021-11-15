@@ -18,6 +18,7 @@ namespace Gade6112
             MaxHP = 20;
             HP = 20;
             Damage = 2;
+            Symbol = "L";
 
         }
 

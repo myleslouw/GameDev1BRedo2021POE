@@ -16,7 +16,7 @@ namespace Gade6112
             set { damage = value; }
         }
 
-        protected virtual int range;
+        protected virtual int range { get; set; }
 
         public virtual int Range
         {
@@ -45,9 +45,8 @@ namespace Gade6112
 
         public Weapon(int y, int x, string symbol) : base(y, x, symbol)
         {
+
         }
-
-
 
     }
 }

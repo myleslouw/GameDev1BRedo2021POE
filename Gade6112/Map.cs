@@ -63,11 +63,12 @@ namespace Gade6112
         {
             get { return itemArray; }
             set { itemArray = value; }
-        }
+        }   //holds all items (gold and weapons)
 
         private int positionWidth, positionHeight;
         private static bool positionTaken;
         public int count;
+        int itemRandomizer;
 
 
 
@@ -103,7 +104,17 @@ namespace Gade6112
 
             for (int i = 0; i < ItemArray.GetLength(0); i++)
             {
-                ItemArray[i]  = Create(Tile.TileType.Gold) as Gold;  //calls create to fill the array with gold
+                itemRandomizer = rndm.Next(0, 2);   //randoms whether to spawn gold or weapaon
+
+                if (itemRandomizer == 0)  //if 0 it will create gold
+                {
+                    ItemArray[i] = Create(Tile.TileType.Gold) as Gold;
+                }
+                else  //creates a random weapon
+                {
+                    itemArray[i] = Create(Tile.TileType.Weapon) as Weapon;
+                }
+
             }
 
             Hero = Create(Tile.TileType.Hero) as Hero;   //creates the hero
@@ -127,7 +138,7 @@ namespace Gade6112
             }
             hero.CharacterVision[0] = mapArray[hero.Y - 1, hero.X];
             hero.CharacterVision[1] = mapArray[hero.Y + 1, hero.X];
-            hero.CharacterVision[2] = mapArray[hero.Y, hero.X -1];
+            hero.CharacterVision[2] = mapArray[hero.Y, hero.X - 1];
             hero.CharacterVision[3] = mapArray[hero.Y, hero.X + 1];
 
             for (int i = 0; i < EnemiesArray.GetLength(0); i++)  //all enemy vision
@@ -138,10 +149,10 @@ namespace Gade6112
                     {
                         EnemiesArray[i].CharacterVision[j] = null;
                     }
-                    EnemiesArray[i].CharacterVision[0] = mapArray[EnemiesArray[i].Y -1, EnemiesArray[i].X];
+                    EnemiesArray[i].CharacterVision[0] = mapArray[EnemiesArray[i].Y - 1, EnemiesArray[i].X];
                     EnemiesArray[i].CharacterVision[1] = mapArray[EnemiesArray[i].Y + 1, EnemiesArray[i].X];
                     EnemiesArray[i].CharacterVision[2] = mapArray[EnemiesArray[i].Y, EnemiesArray[i].X - 1];
-                    EnemiesArray[i].CharacterVision[3] = mapArray[EnemiesArray[i].Y, EnemiesArray[i]. X + 1];
+                    EnemiesArray[i].CharacterVision[3] = mapArray[EnemiesArray[i].Y, EnemiesArray[i].X + 1];
                 }
                 if (EnemiesArray[i] is Mage)  //mages (diagonals included)
                 {
@@ -187,7 +198,7 @@ namespace Gade6112
                     return goldTile;
                     break;
                 case Tile.TileType.Weapon:
-                    Tile weaponTile = new EmptyTile(positionWidth, positionHeight, "!");   //empty for now will add Weapon
+                    Tile weaponTile = RandomWeapon(positionWidth, positionHeight);   //empty for now will add Weapon
                     mapArray[positionHeight, positionWidth] = weaponTile;
                     return weaponTile;
                     break;
@@ -227,49 +238,43 @@ namespace Gade6112
         public Enemy EnemyRandomizer(int posWidth, int posHeight)
         {
             int enemyRandom = rndm.Next(1, 4);  //randoms between goblin and mage
-          
+
             switch (enemyRandom)
             {
                 case 1:
                     return new Goblin(posWidth, posHeight);
-                    break;
 
                 case 2:
                     return new Mage(posWidth, posHeight);
 
                 case 3:
                     return new Leader(posWidth, posHeight);
-                    break;
 
             }
             return null;
 
         }
 
-        public Item ItemDropRandomizer()
-        {
-            int randomNum = rndm.Next(0,2);
+        
 
-            if (randomNum == 0)  //the item will be gold if num is 1
-            {
-                return Create(Tile.TileType.Gold) as Gold;
-            }
-            if (randomNum == 1)  //the item will be a weapon if the num is 2 or more
-            {
-                return RandomWeapon(randomNum);
-            }
-            if (randomNum == 2)
-            {
-                return RandomWeapon(randomNum);
-            }
-            return null;
-        }
-
-        public Weapon RandomWeapon(int num)
+        public Weapon RandomWeapon( int posWidth, int posHeight)
         {
-            if (num == 1)
+            int weaponDecider = rndm.Next(0,4);
+            if (weaponDecider == 0)
             {
-                return Create(Tile.TileType.Weapon) as Weapon;
+                return new MeleeWeapon(posWidth, posHeight, "-",  MeleeWeapon.Types.Dagger) ;   //if the random item num was 0 it will create a dagger
+            }
+            if (weaponDecider == 1)
+            {
+                return new MeleeWeapon(posWidth, posHeight, "/", MeleeWeapon.Types.Longsword);   //if the random item num was 1 it will create a longsword
+            }
+            if (weaponDecider == 2)
+            {
+                return new RangedWeapon(posWidth, posHeight, "^", RangedWeapon.Types.Longbow);   //if the random item num was 2 it will create a longbow
+            }
+            else
+            {
+                return new RangedWeapon(posWidth, posHeight, "*", RangedWeapon.Types.Rifle);   //if the random item num was 3 it will create a rifle;
             }
         }
         public void RandomPosition()
@@ -287,10 +292,10 @@ namespace Gade6112
             }
             else
             {
-                alreadyUsedPositions.Add(new Tuple<int, int>(positionWidth,positionHeight)); //other wise it will add it to the list of spots that have been used and the method will continue
+                alreadyUsedPositions.Add(new Tuple<int, int>(positionWidth, positionHeight)); //other wise it will add it to the list of spots that have been used and the method will continue
                 count--;
             }
-           
+
         }
         public void GetNonRepeatRandom(int posWidth, int posHeight)
         {
@@ -317,7 +322,7 @@ namespace Gade6112
             //    }
 
             //}
-            
+
         }
     }
 }
