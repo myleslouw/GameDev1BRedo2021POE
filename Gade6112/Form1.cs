@@ -34,11 +34,18 @@ namespace Gade6112
 
         private void btn_Start_Click(object sender, EventArgs e)    //starts the game once inputs are all there
         {
+            MessageBox.Show("Players Start with 5 Gold \nEnemies are designed to move after 0,5 seconds after player move to look more like a game");
+
             gameEngine = new GameEngine(8, 12, 8, 12, 3);     //creates a game engine and gives it params to make the map
 
             DisplayMap();
 
             btn_Start.Visible = false;
+
+            //fills the buttons in the shop with their items names
+            btn_shopItem1.Text = gameEngine.shopObject.DisplayWeapon(0);
+            btn_shopItem2.Text = gameEngine.shopObject.DisplayWeapon(1);
+            btn_shopItem3.Text = gameEngine.shopObject.DisplayWeapon(2);
         }
         public void DisplayMap() //main Display method
         {
@@ -199,6 +206,61 @@ namespace Gade6112
             gameEngine.EngineMap = gameEngine.LoadGame(); //the current map being used will be set the one loaded from the file
             MessageBox.Show("Previous Save Loaded! Please click Ok");  //notif of completion
             DisplayMap();  //displays the loaded map
+        }
+
+        public async void BuyAnimation(Button btn ,int num)   //button says purchased and then shows the next item after 1 second
+        {
+            btn.Text = "Purchased!";
+            await Task.Delay(1000);
+            btn.Text = gameEngine.shopObject.DisplayWeapon(num);
+        }
+        public async void FailedBuyAnimation(Button btn, int num)
+        {
+            btn.Text = "Not Enough Gold";
+            await Task.Delay(1000);
+            btn.Text = gameEngine.shopObject.DisplayWeapon(num);
+        }
+
+        private void btn_shopItem1_Click(object sender, EventArgs e)
+        {
+            if (gameEngine.shopObject.CanBuy(0))  //if the player has enough to buy the 1st weapon
+            {
+                gameEngine.shopObject.Buy(0);  //buy the weapon and equips it
+                BuyAnimation(btn_shopItem1, 0);
+                DisplayMap();
+            }
+            else
+            {
+                FailedBuyAnimation(btn_shopItem1, 0);
+            }
+        }
+
+        private void btn_shopItem2_Click(object sender, EventArgs e)
+        {
+            if (gameEngine.shopObject.CanBuy(1))  //if the player has enough to buy the 2nd weapon
+            {
+                gameEngine.shopObject.Buy(1);  //buy the weapon and equips it
+                BuyAnimation(btn_shopItem2, 1);
+                DisplayMap();
+            }
+            else
+            {
+                FailedBuyAnimation(btn_shopItem2, 1);
+            }
+        }
+
+        private void btn_shopItem3_Click(object sender, EventArgs e)
+        {
+            if (gameEngine.shopObject.CanBuy(2))  //if the player has enough to buy the 3rd weapon
+            {
+                gameEngine.shopObject.Buy(2);  //buy the weapon and equips it
+                BuyAnimation(btn_shopItem3, 2);
+                DisplayMap();
+            }
+            else
+            {
+                FailedBuyAnimation(btn_shopItem3, 2);
+            }
         }
     }
 }

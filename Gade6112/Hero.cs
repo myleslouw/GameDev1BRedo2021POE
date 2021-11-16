@@ -21,7 +21,7 @@ namespace Gade6112
             Damage = 2;
             Symbol = "H";
 
-
+            GoldCount = 5;  //Start With 5 gold to make it easier to play and test
 
         }
 

@@ -41,9 +41,12 @@
             this.rtb_HitAlert = new System.Windows.Forms.RichTextBox();
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_Load = new System.Windows.Forms.Button();
-            this.lbl_check = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lbl_EnemiesList = new System.Windows.Forms.Label();
+            this.btn_shopItem1 = new System.Windows.Forms.Button();
+            this.btn_shopItem2 = new System.Windows.Forms.Button();
+            this.btn_shopItem3 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_GameScreen
@@ -130,9 +133,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(710, 390);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(713, 387);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 13);
+            this.label1.Size = new System.Drawing.Size(81, 16);
             this.label1.TabIndex = 20;
             this.label1.Text = "Hero Vision:";
             // 
@@ -173,41 +177,76 @@
             this.btn_Load.UseVisualStyleBackColor = true;
             this.btn_Load.Click += new System.EventHandler(this.btn_Load_Click);
             // 
-            // lbl_check
-            // 
-            this.lbl_check.AutoSize = true;
-            this.lbl_check.Location = new System.Drawing.Point(713, 126);
-            this.lbl_check.Name = "lbl_check";
-            this.lbl_check.Size = new System.Drawing.Size(35, 13);
-            this.lbl_check.TabIndex = 26;
-            this.lbl_check.Text = "label2";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(434, 390);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 13);
+            this.label2.Size = new System.Drawing.Size(112, 16);
             this.label2.TabIndex = 28;
             this.label2.Text = "Enemies on Map:";
             // 
             // lbl_EnemiesList
             // 
             this.lbl_EnemiesList.AutoSize = true;
-            this.lbl_EnemiesList.Location = new System.Drawing.Point(434, 406);
+            this.lbl_EnemiesList.Location = new System.Drawing.Point(434, 415);
             this.lbl_EnemiesList.Name = "lbl_EnemiesList";
             this.lbl_EnemiesList.Size = new System.Drawing.Size(86, 13);
             this.lbl_EnemiesList.TabIndex = 29;
             this.lbl_EnemiesList.Text = "*List of Enemies*";
+            // 
+            // btn_shopItem1
+            // 
+            this.btn_shopItem1.Location = new System.Drawing.Point(437, 173);
+            this.btn_shopItem1.Name = "btn_shopItem1";
+            this.btn_shopItem1.Size = new System.Drawing.Size(160, 23);
+            this.btn_shopItem1.TabIndex = 30;
+            this.btn_shopItem1.Text = "shopItem1";
+            this.btn_shopItem1.UseVisualStyleBackColor = true;
+            this.btn_shopItem1.Click += new System.EventHandler(this.btn_shopItem1_Click);
+            // 
+            // btn_shopItem2
+            // 
+            this.btn_shopItem2.Location = new System.Drawing.Point(437, 211);
+            this.btn_shopItem2.Name = "btn_shopItem2";
+            this.btn_shopItem2.Size = new System.Drawing.Size(160, 23);
+            this.btn_shopItem2.TabIndex = 31;
+            this.btn_shopItem2.Text = "shopItem2";
+            this.btn_shopItem2.UseVisualStyleBackColor = true;
+            this.btn_shopItem2.Click += new System.EventHandler(this.btn_shopItem2_Click);
+            // 
+            // btn_shopItem3
+            // 
+            this.btn_shopItem3.Location = new System.Drawing.Point(437, 249);
+            this.btn_shopItem3.Name = "btn_shopItem3";
+            this.btn_shopItem3.Size = new System.Drawing.Size(160, 23);
+            this.btn_shopItem3.TabIndex = 32;
+            this.btn_shopItem3.Text = "shopItem3";
+            this.btn_shopItem3.UseVisualStyleBackColor = true;
+            this.btn_shopItem3.Click += new System.EventHandler(this.btn_shopItem3_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(434, 139);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 16);
+            this.label3.TabIndex = 33;
+            this.label3.Text = "Shop Items:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1096, 605);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btn_shopItem3);
+            this.Controls.Add(this.btn_shopItem2);
+            this.Controls.Add(this.btn_shopItem1);
             this.Controls.Add(this.lbl_EnemiesList);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.lbl_check);
             this.Controls.Add(this.btn_Load);
             this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.rtb_HitAlert);
@@ -243,9 +282,12 @@
         private System.Windows.Forms.RichTextBox rtb_HitAlert;
         private System.Windows.Forms.Button btn_Save;
         private System.Windows.Forms.Button btn_Load;
-        private System.Windows.Forms.Label lbl_check;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lbl_EnemiesList;
+        private System.Windows.Forms.Button btn_shopItem1;
+        private System.Windows.Forms.Button btn_shopItem2;
+        private System.Windows.Forms.Button btn_shopItem3;
+        private System.Windows.Forms.Label label3;
     }
 }
 
