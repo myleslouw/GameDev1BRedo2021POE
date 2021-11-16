@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gade6112
 {
+    [Serializable]
     abstract class Weapon : Item
     {
         protected int damage;

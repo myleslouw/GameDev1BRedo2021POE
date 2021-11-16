@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gade6112
 {
+    [Serializable]
     class Shop
     {
         private Weapon[] weaponArray;    //3 slots for weapons
@@ -33,17 +34,20 @@ namespace Gade6112
             {
 
                 case 0:   //dagger
-                    return null;
-                    break;
+
+                    return new MeleeWeapon(0,0, "-", MeleeWeapon.Types.Dagger);  //the weapons internal x and y doesnt matter so it will be 0
+
                 case 1:   //longsword
 
-                    break;
+                    return new MeleeWeapon(0, 0, "/", MeleeWeapon.Types.Longsword);  //the weapons internal x and y doesnt matter so it will be 
+
                 case 2:   //Rifle
 
-                    break;
+                    return new RangedWeapon(0, 0, "^", RangedWeapon.Types.Longbow);  //the weapons internal x and y doesnt matter so it will be 0
+
                 case 3:  //LongBow
 
-                    break;
+                    return new RangedWeapon(0, 0, "*", RangedWeapon.Types.Rifle);  //the weapons internal x and y doesnt matter so it will be 
                 
             }
             return null;

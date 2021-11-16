@@ -38,7 +38,7 @@ namespace Gade6112
         {
             engineMap = new Map(_minHeight, _maxHeight, _minWidth, _maxWidth, _numEnemies, 3, 3);
 
-
+            shopObject = new Shop(EngineMap.Hero);
         }
 
         public bool MovePlayer(Character.movement direction)  //changes pos in the Map Array

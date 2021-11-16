@@ -10,6 +10,7 @@ namespace Gade6112
     class Hero : Character
     {
         private Gold currentGoldObject;
+        private Weapon currentWeaponObject;
 
         public Hero(int _xPos, int _yPos, int _maxHp) : base(_xPos, _yPos, "H")
         {
@@ -26,11 +27,22 @@ namespace Gade6112
 
         public override void Attack(Character target)
         {
-            target.HP -= this.damage;
-            if (target.isDead())
+
+            int TotalDamage;
+
+
+
+            if (currentWeapon == null) //null == no weapon == bare hands
             {
-                
+                TotalDamage = damage;  //use the starting damage (barehands)
             }
+            else                        //if there is a weapon
+            {
+                TotalDamage = CurrentWeapon.Damage;  //use the weapons damage
+            }
+
+            target.HP -= TotalDamage;
+           
         }
         public override movement ReturnMovement(movement move)
         {
@@ -48,6 +60,12 @@ namespace Gade6112
                         Pickup(currentGoldObject);
                         return move;
                     }
+                    else if (CharacterVision[0] is Weapon)  //if it is a weapon it will move there but also pickup the weapon
+                    {
+                        currentWeaponObject = (Weapon)CharacterVision[0];
+                        Pickup(currentWeaponObject);
+                        return move;
+                    }
                     else if (CharacterVision[0] is EmptyTile)  //if it is empty it will move there
                     {
                         return move;
@@ -56,12 +74,17 @@ namespace Gade6112
                     {
                         return movement.noMvm;
                     }
-                    break;
                 case movement.Down:
                     if (CharacterVision[1] is Gold) //if it is gold it will move there but also pickup the gold
                     {
                         currentGoldObject = (Gold)characterVision[1];
                         Pickup(currentGoldObject);
+                        return move;
+                    }
+                    else if (CharacterVision[1] is Weapon)
+                    {
+                        currentWeaponObject = (Weapon)CharacterVision[1];
+                        Pickup(currentWeaponObject);
                         return move;
                     }
                     else if (CharacterVision[1] is EmptyTile)
@@ -72,12 +95,17 @@ namespace Gade6112
                     {
                         return movement.noMvm;
                     }
-                    break;
                 case movement.Left:
                     if (CharacterVision[2] is Gold) //if it is gold it will move there but also pickup the gold
                     {
                         currentGoldObject = (Gold)characterVision[2];
                         Pickup(currentGoldObject);
+                        return move;
+                    }
+                    else if (CharacterVision[2] is Weapon)
+                    {
+                        currentWeaponObject = (Weapon)CharacterVision[2];
+                        Pickup(currentWeaponObject);
                         return move;
                     }
                     else if (CharacterVision[2] is EmptyTile)
@@ -88,12 +116,17 @@ namespace Gade6112
                     {
                         return movement.noMvm;
                     }
-                    break;
                 case movement.Right:
                     if (CharacterVision[3] is Gold) //if it is gold it will move there but also pickup the gold
                     {
                         currentGoldObject = (Gold)characterVision[3];
                         Pickup(currentGoldObject);
+                        return move;
+                    }
+                    else if (CharacterVision[3] is Weapon)
+                    {
+                        currentWeaponObject = (Weapon)CharacterVision[3];
+                        Pickup(currentWeaponObject);
                         return move;
                     }
                     else if (CharacterVision[3] is EmptyTile)
@@ -104,9 +137,7 @@ namespace Gade6112
                     {
                         return movement.noMvm;
                     }
-                    break;
-                default:
-                    break;
+               
             }
 
             return Character.movement.noMvm;
@@ -116,8 +147,17 @@ namespace Gade6112
         public override string ToString()
         {
             string heroInfo;
-            heroInfo = "Player Stats: \n HP: " + HP + " / " + MaxHP; //+ "Current Weapon: " + currentWeapon + "\n Weapon Range: " + currentWeapon.Range + "\n Weapon Damage: " + currentWeapon.Damage + "\n [" + X + " , " + Y + "]. Gold = " + GoldCount;
-            return heroInfo; ;
+
+            if (CurrentWeapon == null)
+            {
+                heroInfo = "Player Stats: \n HP: " + HP + " / " + MaxHP + " | Current Weapon: BareHands" + "\n Weapon Range: Close" + "\n Damage: " + Damage + "\n [" + X + " , " + Y + "]. Gold = " + GoldCount;
+                return heroInfo;
+            }
+            else
+            {
+                heroInfo = "Player Stats: \n HP: " + HP + " / " + MaxHP + " | Current Weapon: " + currentWeapon + "\n Weapon Range: " + currentWeapon.Range + "\n Weapon Damage: " + currentWeapon.Damage + "\n Durability: " + currentWeapon.Durabilty + "\n [" + X + " , " + Y + "]. Gold = " + GoldCount;
+                return heroInfo;
+            }
         }
     }
 }

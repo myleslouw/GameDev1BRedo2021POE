@@ -43,7 +43,7 @@ namespace Gade6112
                         base.Attack((Character)characterVision[i]);
                     }
                     catch (Exception)
-                    { 
+                    {
                     }
                 }
             }
@@ -65,7 +65,8 @@ namespace Gade6112
         {
             string enemyInfo;
             string className = "Mage";
-            enemyInfo = className + " at [" + X + ", " + Y + "] (Damage: " + Damage + ")(Health: " + this.hp + ")";
+
+            enemyInfo = "Barehanded: " + className + " (" + this.hp + "/" + this.maxHp + ") at [" + X + ", " + Y + "] [" + damage + " DMG]";
             return enemyInfo;
         }
     }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gade6112
 {
+    [Serializable]
     class RangedWeapon : Weapon
     {
         public enum Types { Rifle, Longbow}
@@ -41,6 +42,10 @@ namespace Gade6112
                     break;
             }
 
+        }
+        public override string ToString()
+        {
+            return "Weapon: " + this.TypeString;
         }
     }
 }

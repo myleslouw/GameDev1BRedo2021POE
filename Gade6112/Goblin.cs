@@ -11,6 +11,7 @@ namespace Gade6112
     {
         Random rndm; //used for random generator
         int rndmEnum; // used for random number for enum
+        private Weapon currentWeaponObject;
 
         public Goblin(int _yPos, int _xPos) : base (_yPos, _xPos, 1, 10,10,"G")
         {
@@ -19,6 +20,7 @@ namespace Gade6112
             MaxHP = 10;
             Damage = 1;
             Symbol = "G";
+            //currentWeapon = ;
 
             rndm = new Random();
         }
@@ -35,10 +37,16 @@ namespace Gade6112
             //3 = right
             switch (rndmEnum)
             {
-                case 0:                                                //if rndm num is 0, that mean it will go up, so it checks if empty, if not it will rerun the method and try again
+                case 0:                                                //if rndm num is 0, that mean it will go up, so it checks if empty or a weapon, if not it will rerun the method and try again
                     if (CharacterVision[0] is EmptyTile)
                     {
                         return movement.Up;
+                    }
+                    else if (CharacterVision[0] is Weapon)
+                    {
+                        currentWeaponObject = (Weapon)CharacterVision[0];
+                        Pickup(currentWeaponObject);
+                        return move;
                     }
                     else
                     {
@@ -50,6 +58,12 @@ namespace Gade6112
                     {
                         return movement.Down;
                     }
+                    else if (CharacterVision[1] is Weapon)
+                    {
+                        currentWeaponObject = (Weapon)CharacterVision[1];
+                        Pickup(currentWeaponObject);
+                        return move;
+                    }
                     else
                     {
                         return ReturnMovement(movement.noMvm);
@@ -60,33 +74,48 @@ namespace Gade6112
                     {
                         return movement.Left;
                     }
+                    else if (CharacterVision[2] is Weapon)
+                    {
+                        currentWeaponObject = (Weapon)CharacterVision[2];
+                        Pickup(currentWeaponObject);
+                        return move;
+                    }
                     else
                     {
                         return ReturnMovement(movement.noMvm);
                     }
-                    break;
                 case 3:
                     if (CharacterVision[3] is EmptyTile)
                     {
                         return movement.Right;
                     }
+                    else if (CharacterVision[3] is Weapon)
+                    {
+                        currentWeaponObject = (Weapon)CharacterVision[3];
+                        Pickup(currentWeaponObject);
+                        return move;
+                    }
                     else
                     {
                         return ReturnMovement(movement.noMvm);
                     }
-                    break;
-                default:
-                    return movement.noMvm;
-                    break;
             }
-
+            return movement.noMvm;
         }
         public override string ToString()
         {
             string enemyInfo;
             string className = "Goblin";
-            enemyInfo = className + " at [" + X + ", " + Y + "] (Damage: " + Damage + ")(Health: " + this.hp + ")";
-            return enemyInfo;
+            if (CurrentWeapon == null)
+            {
+                enemyInfo = "Barehanded: " + className + " (" + this.hp + "/" + this.maxHp + ") at [" + X + ", " + Y + "] [" + damage + " DMG]";
+                return enemyInfo;
+            }
+            else
+            {
+                enemyInfo = "Equipped: " + className + " (" + this.hp + "/" + this.maxHp + ") at [" + X + ", " + Y + "] with " + CurrentWeapon.TypeString + " [" + currentWeapon.Damage + " DMG]";
+                return enemyInfo;
+            }
         }
 
     }

@@ -170,6 +170,18 @@ namespace Gade6112
                     EnemiesArray[i].DiagonalTile[2] = mapArray[EnemiesArray[i].Y + 1, EnemiesArray[i].X - 1];   //SW
                     EnemiesArray[i].DiagonalTile[3] = mapArray[EnemiesArray[i].Y + 1, EnemiesArray[i].X + 1];   //SE
                 }
+
+                if (EnemiesArray[i] is Leader)
+                {
+                    for (int j = 0; j < EnemiesArray[i].CharacterVision.Length; j++)  //nulls themm initally
+                    {
+                        EnemiesArray[i].CharacterVision[j] = null;
+                    }
+                    EnemiesArray[i].CharacterVision[0] = mapArray[EnemiesArray[i].Y - 1, EnemiesArray[i].X];
+                    EnemiesArray[i].CharacterVision[1] = mapArray[EnemiesArray[i].Y + 1, EnemiesArray[i].X];
+                    EnemiesArray[i].CharacterVision[2] = mapArray[EnemiesArray[i].Y, EnemiesArray[i].X - 1];
+                    EnemiesArray[i].CharacterVision[3] = mapArray[EnemiesArray[i].Y, EnemiesArray[i].X + 1];
+                }
             }
 
         }
@@ -182,7 +194,7 @@ namespace Gade6112
             switch (tileType)
             {
                 case Tile.TileType.Hero:    //***used at the start***
-                    Hero = new Hero(positionWidth, positionHeight, 10);   //creates a hero at the random coordinates 
+                    Hero = new Hero(positionWidth, positionHeight, 100);   //creates a hero at the random coordinates 
                     mapArray[positionHeight, positionWidth] = hero;
                     return Hero;
                 case Tile.TileType.Enemy:

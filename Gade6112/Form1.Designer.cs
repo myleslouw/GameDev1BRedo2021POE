@@ -41,6 +41,9 @@
             this.rtb_HitAlert = new System.Windows.Forms.RichTextBox();
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_Load = new System.Windows.Forms.Button();
+            this.lbl_check = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lbl_EnemiesList = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_GameScreen
@@ -54,7 +57,7 @@
             // 
             // btn_Start
             // 
-            this.btn_Start.Location = new System.Drawing.Point(707, 394);
+            this.btn_Start.Location = new System.Drawing.Point(972, 507);
             this.btn_Start.Name = "btn_Start";
             this.btn_Start.Size = new System.Drawing.Size(75, 23);
             this.btn_Start.TabIndex = 1;
@@ -65,7 +68,7 @@
             // lb_UpdateScreen
             // 
             this.lb_UpdateScreen.FormattingEnabled = true;
-            this.lb_UpdateScreen.Location = new System.Drawing.Point(448, 293);
+            this.lb_UpdateScreen.Location = new System.Drawing.Point(713, 406);
             this.lb_UpdateScreen.Name = "lb_UpdateScreen";
             this.lb_UpdateScreen.Size = new System.Drawing.Size(334, 95);
             this.lb_UpdateScreen.TabIndex = 14;
@@ -73,7 +76,7 @@
             // btn_Up
             // 
             this.btn_Up.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Up.Location = new System.Drawing.Point(644, 26);
+            this.btn_Up.Location = new System.Drawing.Point(909, 139);
             this.btn_Up.Name = "btn_Up";
             this.btn_Up.Size = new System.Drawing.Size(55, 37);
             this.btn_Up.TabIndex = 15;
@@ -84,7 +87,7 @@
             // btn_Right
             // 
             this.btn_Right.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Right.Location = new System.Drawing.Point(714, 60);
+            this.btn_Right.Location = new System.Drawing.Point(979, 173);
             this.btn_Right.Name = "btn_Right";
             this.btn_Right.Size = new System.Drawing.Size(55, 37);
             this.btn_Right.TabIndex = 16;
@@ -95,7 +98,7 @@
             // btn_Down
             // 
             this.btn_Down.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Down.Location = new System.Drawing.Point(644, 98);
+            this.btn_Down.Location = new System.Drawing.Point(909, 211);
             this.btn_Down.Name = "btn_Down";
             this.btn_Down.Size = new System.Drawing.Size(55, 37);
             this.btn_Down.TabIndex = 17;
@@ -106,7 +109,7 @@
             // btn_left
             // 
             this.btn_left.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_left.Location = new System.Drawing.Point(572, 60);
+            this.btn_left.Location = new System.Drawing.Point(837, 173);
             this.btn_left.Name = "btn_left";
             this.btn_left.Size = new System.Drawing.Size(55, 37);
             this.btn_left.TabIndex = 18;
@@ -116,7 +119,7 @@
             // 
             // btn_Attack
             // 
-            this.btn_Attack.Location = new System.Drawing.Point(633, 69);
+            this.btn_Attack.Location = new System.Drawing.Point(898, 182);
             this.btn_Attack.Name = "btn_Attack";
             this.btn_Attack.Size = new System.Drawing.Size(75, 23);
             this.btn_Attack.TabIndex = 19;
@@ -127,16 +130,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(445, 277);
+            this.label1.Location = new System.Drawing.Point(710, 390);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 13);
+            this.label1.Size = new System.Drawing.Size(64, 13);
             this.label1.TabIndex = 20;
-            this.label1.Text = "Objects in Range:";
+            this.label1.Text = "Hero Vision:";
             // 
             // lbl_PlayerStats
             // 
             this.lbl_PlayerStats.AutoSize = true;
-            this.lbl_PlayerStats.Location = new System.Drawing.Point(445, 146);
+            this.lbl_PlayerStats.Location = new System.Drawing.Point(710, 259);
             this.lbl_PlayerStats.Name = "lbl_PlayerStats";
             this.lbl_PlayerStats.Size = new System.Drawing.Size(66, 13);
             this.lbl_PlayerStats.TabIndex = 22;
@@ -144,7 +147,7 @@
             // 
             // rtb_HitAlert
             // 
-            this.rtb_HitAlert.Location = new System.Drawing.Point(448, 395);
+            this.rtb_HitAlert.Location = new System.Drawing.Point(713, 508);
             this.rtb_HitAlert.Name = "rtb_HitAlert";
             this.rtb_HitAlert.Size = new System.Drawing.Size(158, 22);
             this.rtb_HitAlert.TabIndex = 23;
@@ -152,7 +155,7 @@
             // 
             // btn_Save
             // 
-            this.btn_Save.Location = new System.Drawing.Point(624, 239);
+            this.btn_Save.Location = new System.Drawing.Point(889, 352);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(75, 23);
             this.btn_Save.TabIndex = 24;
@@ -162,7 +165,7 @@
             // 
             // btn_Load
             // 
-            this.btn_Load.Location = new System.Drawing.Point(713, 239);
+            this.btn_Load.Location = new System.Drawing.Point(978, 352);
             this.btn_Load.Name = "btn_Load";
             this.btn_Load.Size = new System.Drawing.Size(75, 23);
             this.btn_Load.TabIndex = 25;
@@ -170,11 +173,41 @@
             this.btn_Load.UseVisualStyleBackColor = true;
             this.btn_Load.Click += new System.EventHandler(this.btn_Load_Click);
             // 
+            // lbl_check
+            // 
+            this.lbl_check.AutoSize = true;
+            this.lbl_check.Location = new System.Drawing.Point(713, 126);
+            this.lbl_check.Name = "lbl_check";
+            this.lbl_check.Size = new System.Drawing.Size(35, 13);
+            this.lbl_check.TabIndex = 26;
+            this.lbl_check.Text = "label2";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(434, 390);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(89, 13);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "Enemies on Map:";
+            // 
+            // lbl_EnemiesList
+            // 
+            this.lbl_EnemiesList.AutoSize = true;
+            this.lbl_EnemiesList.Location = new System.Drawing.Point(434, 406);
+            this.lbl_EnemiesList.Name = "lbl_EnemiesList";
+            this.lbl_EnemiesList.Size = new System.Drawing.Size(86, 13);
+            this.lbl_EnemiesList.TabIndex = 29;
+            this.lbl_EnemiesList.Text = "*List of Enemies*";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1096, 605);
+            this.Controls.Add(this.lbl_EnemiesList);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbl_check);
             this.Controls.Add(this.btn_Load);
             this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.rtb_HitAlert);
@@ -210,6 +243,9 @@
         private System.Windows.Forms.RichTextBox rtb_HitAlert;
         private System.Windows.Forms.Button btn_Save;
         private System.Windows.Forms.Button btn_Load;
+        private System.Windows.Forms.Label lbl_check;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbl_EnemiesList;
     }
 }
 

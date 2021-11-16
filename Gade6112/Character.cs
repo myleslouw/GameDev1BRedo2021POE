@@ -37,7 +37,6 @@ namespace Gade6112
         }
 
         public enum movement {noMvm, Up, Down, Left, Right }
-        string symbol;
 
         private int goldCount;
 
@@ -49,6 +48,13 @@ namespace Gade6112
         private Gold currentGold;
 
         protected Weapon currentWeapon;
+
+        public Weapon CurrentWeapon
+        {
+            get { return currentWeapon; }
+            set { currentWeapon = value; }
+        }
+
 
 
         public Character(int _yPos, int _xPos, string _symbol) : base (_yPos, _xPos, _symbol)
@@ -62,7 +68,19 @@ namespace Gade6112
 
         public virtual void Attack(Character target)
         {
-            target.hp -= damage;
+            int TotalDamage;
+
+
+            if (currentWeapon == null) //null == no weapon == bare hands
+            {
+                TotalDamage = damage;  //use the starting damage (barehands)
+            }
+            else                        //if there is a weapon
+            {
+                TotalDamage = CurrentWeapon.Damage;  //use the weapons damage
+            }
+
+            target.hp -= TotalDamage;
         }
 
         public bool isDead()
@@ -79,16 +97,22 @@ namespace Gade6112
 
         public virtual bool CheckRange(Character target)
         {
-            
 
-            return false;
+            if (DistanceTo(target) <= 1)   //1 is the range
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
         }
 
         private int DistanceTo(Character target)
         {
-
+            return Math.Abs(X = target.X + Math.Abs(Y - target.Y));
           
-            return 0;
         }
 
         public void Move(movement move)  //cahnges internal X and Y values of the Tile
@@ -128,6 +152,16 @@ namespace Gade6112
                 currentGold = (Gold)i;  //stored in a gold variable to access its gold amount
                 goldCount += currentGold.GoldAmount; //adds the amount of gold to the characters gold Purse
             }
+
+            if (i is Weapon)  //if the item is of type WEapon, it will be picked upS
+            {
+                Equip((Weapon)i);   //will be equipped
+            }
+        }
+
+        private void Equip(Weapon w)
+        {
+            currentWeapon = w;
         }
 
     }
