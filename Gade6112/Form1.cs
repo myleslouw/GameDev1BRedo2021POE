@@ -49,6 +49,12 @@ namespace Gade6112
         }
         public void DisplayMap() //main Display method
         {
+            if (gameEngine.EngineMap.Hero.isDead())
+            {
+                MessageBox.Show("Player has died");
+                Application.Exit();
+            }
+
             lbl_GameScreen.Text = "";  //erases it so it can be called with up to date values each time
 
             int rowLength = gameEngine.EngineMap.MapArray.GetLength(0);   //gets lengths of the array
